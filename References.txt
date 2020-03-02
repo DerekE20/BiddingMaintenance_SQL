@@ -1,0 +1,8 @@
+<ComboBox ItemsSource="{Binding Vals, Converter={StaticResource distinctConverter}}" />
+
+https://docs.microsoft.com/en-us/ef/ef6/fundamentals/databinding/wpf
+
+https://www.codeproject.com/Articles/877355/Tutorial-for-a-Basic-WPF-MVVM-Project-Using-Enti-2
+https://www.codeproject.com/Articles/873592/Tutorial-for-a-Basic-WPF-MVVM-Project-Using-Entity
+
+Combobox changes: https://stackoverflow.com/questions/8666256/how-to-handle-the-selectionchanged-event-of-combobox-with-mvvm-in-wpf

@@ -1,0 +1,111 @@
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'action'
+
+ActionId, Description,
+MethodRef,
+StageRef,
+Sequence,
+SuitActionRef,
+ShapeActionRef,
+ProtectiveActionRef,
+ConventionRef,
+OpponentBidActionRef,
+PartnerBidActionRef,
+SuitQualityActionRef,
+FourCardMajorActionRef,
+BalancedActionRef,
+ltcActionRef
+#######################################################################################
+DECLARE @j INT;
+SET @j = (select (max(ActionId)) from action);
+INSERT INTO action (ActionId, Description,
+MethodRef,
+StageRef,
+Sequence,
+SuitActionRef,
+ShapeActionRef,
+ProtectiveActionRef,
+ConventionRef,
+OpponentBidActionRef,
+PartnerBidActionRef,
+SuitQualityActionRef,
+FourCardMajorActionRef,
+BalancedActionRef,
+ltcActionRef)
+SELECT ActionId+@j, Description,
+MethodRef,
+StageRef,
+Sequence,
+SuitActionRef,
+ShapeActionRef,
+ProtectiveActionRef,
+ConventionRef,
+OpponentBidActionRef,
+PartnerBidActionRef,
+SuitQualityActionRef,
+FourCardMajorActionRef,
+BalancedActionRef,
+ltcActionRef
+FROM action
+WHERE systemref=1
+UPDATE action set systemRef=2 where actionid>@j
+##############################################################################
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'bid'
+
+BidId,
+MethodRef,
+BidName,
+Description,
+SuitRef,
+StageRef,
+ShapeRef,
+PointRangeRef,
+ltcRef,
+BidBoxRef,
+ConventionRef,
+Protective,
+OpponentBidRef,
+PartnerBidRef,
+SuitQualityRef,
+FourCardMajorRef,
+Balanced
+#################################################################################
+DECLARE @i INT;
+SET @i = (select (max(BidId)) from bid);
+INSERT into Bid
+(BidId,
+MethodRef,
+BidName,
+Description,
+SuitRef,
+StageRef,
+ShapeRef,
+PointRangeRef,
+ltcRef,
+BidBoxRef,
+ConventionRef,
+Protective,
+OpponentBidRef,
+PartnerBidRef,
+SuitQualityRef,
+FourCardMajorRef,
+Balanced)
+SELECT BidId+@i,
+MethodRef,
+BidName,
+Description,
+SuitRef,
+StageRef,
+ShapeRef,
+PointRangeRef,
+ltcRef,
+BidBoxRef,
+ConventionRef,
+Protective,
+OpponentBidRef,
+PartnerBidRef,
+SuitQualityRef,
+FourCardMajorRef,
+Balanced
+FROM bid WHERE methodref=1;
+
+UPDATE bid set methodRef=3 where bidid>@i
